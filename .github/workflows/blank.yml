@@ -1,36 +1,32 @@
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Set up JDK for Java
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           java-version: '17' # eller din version, t.ex. 23
           distribution: 'adopt'
-          
-      # Runs Maven commands
+
+      # Navigera till den katalog där pom.xml finns
+      - name: Change directory
+        run: cd path/to/your/project-directory # Ändra till din mapp där pom.xml finns
+
+      # Bygg och testa projektet
       - name: Build with Maven
         run: mvn clean install
-        
-      # Run Tests
+
       - name: Run Tests
         run: mvn test
