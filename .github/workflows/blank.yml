@@ -17,14 +17,14 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '17' # eller din version, t.ex. 23
+          java-version: '17' 
           distribution: 'adopt'
 
-      # Navigera till den katalog där pom.xml finns
+      
       - name: Build with Maven
         run: mvn clean install
-        working-directory: ./backend # Ändra till den mapp där pom.xml finns
+        working-directory: ./backend 
 
       - name: Run Tests
         run: mvn test
-        working-directory: ./backend # Samma här
+        working-directory: ./backend 
